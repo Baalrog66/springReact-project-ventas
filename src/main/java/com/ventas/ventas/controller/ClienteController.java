@@ -41,5 +41,16 @@ public class ClienteController {
                 .map(c -> ResponseEntity.ok(clienteService.update(cliente)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Cliente> delete (@PathVariable("id") Integer idCliente) {
+
+        return  clienteService.findById(idCliente)
+                .map(c -> {
+                    clienteService.delete(idCliente);
+                    return ResponseEntity.ok(c);
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }
 
