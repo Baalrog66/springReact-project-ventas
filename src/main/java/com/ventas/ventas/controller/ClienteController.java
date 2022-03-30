@@ -49,6 +49,7 @@ public class ClienteController {
                 .map(c -> {
                     clienteService.delete(idCliente);
                     return ResponseEntity.ok(c);
+
                 })
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
